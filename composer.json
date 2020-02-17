@@ -1,5 +1,5 @@
 {
-    "name": "bileto/omnipay-payu",
+    "name": "alias2k/omnipay-payu",
     "type": "library",
     "description": "PayU gateway for Omnipay payment processing library",
     "keywords": [
@@ -11,12 +11,12 @@
         "payu",
         "purchase"
     ],
-    "homepage": "https://github.com/bileto/omnipay-payu",
+    "homepage": "https://github.com/alias2k/omnipay-payu",
     "license": "MIT",
     "authors": [
         {
-            "name": "Jan Machala",
-            "email": "jan.machala@bileto.com"
+            "name": "Alias2k",
+            "email": "tech@alias2k.com"
         }
     ],
     "minimum-stability": "stable",
