@@ -37,10 +37,8 @@ class CompletePurchaseRequest extends AbstractRequest
             'Authorization' => $data['accessToken']
         ];
         $url = $data['apiUrl'] . '/api/v2_1/orders/' . urlencode($this->getTransactionReference());
-        $httpRequest = $this->httpClient->get($url, $headers);
-        $httpResponse = $httpRequest->send();
-
-        $response = new CompletePurchaseResponse($this, $httpResponse->json());
+        $httpResponse = $this->httpClient->request('GET',$url, $headers);
+        $response = new CompletePurchaseResponse($this, json_decode($httpResponse->getBody()->getContents(),true));
 
         return $this->response = $response;
     }

@@ -33,9 +33,9 @@ class AccessTokenRequest extends AbstractRequest
             'Accept' => 'application/json',
             'ContentType' => 'application/json',
         ];
-        $tokenData = $this->httpClient->post($authorizeUrl, $headers, $data)->send();
+        $tokenData = $this->httpClient->request('POST',$authorizeUrl.'?'.http_build_query($data), $headers, '');
 
-        $response = new AccessTokenResponse($this, $tokenData->json());
+        $response = new AccessTokenResponse($this, $tokenData->getBody()->getContents());
         return $response;
     }
 

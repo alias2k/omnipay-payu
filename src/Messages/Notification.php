@@ -100,12 +100,11 @@ class Notification implements NotificationInterface
 
             $incomingSignature = $this->getSignature($this->httpRequest);
 
-            $sign = OpenPayU_Util::parseSignature($incomingSignature);
-
+            $sign = (object)OpenPayU_Util::parseSignature($incomingSignature);
             if (OpenPayU_Util::verifySignature($content, $sign->signature, $this->secondKey, $sign->algorithm)) {
                 $this->cachedData = json_decode($content);
             } else {
-                throw new InvalidRequestException('Invalid signature - ' . $sign->signature);
+                throw new InvalidRequestException('Invalid signature - (' .$incomingSignature .') - '. $sign->signature);
             }
         }
 
@@ -139,7 +138,7 @@ class Notification implements NotificationInterface
             $status = $this->getData()->order->status;
             if (in_array($status, ['COMPLETED'], true)) {
                 return self::STATUS_COMPLETED;
-            } elseif (in_array($status, 'PENDING')) {
+            } elseif (in_array($status, ['PENDING'])) {
                 return self::STATUS_PENDING;
             } elseif (in_array($status, ['CANCELLED', 'REJECTED'])) {
                 return self::STATUS_FAILED;

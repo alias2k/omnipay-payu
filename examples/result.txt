@@ -1,0 +1,154 @@
+Signature: array (
+  'Host' => 'alias-internal-testing.a2k.it',
+  'Connection' => 'close',
+  'Content-Length' => '496',
+  'User-Agent' => 'Jakarta Commons-HttpClient/3.1',
+  'X-OpenPayU-Signature' => 'sender=checkout;signature=40a52734d8eede648d49c3aedaedc841;algorithm=MD5;content=DOCUMENT',
+  'OpenPayu-Signature' => 'sender=checkout;signature=40a52734d8eede648d49c3aedaedc841;algorithm=MD5;content=DOCUMENT',
+  'Content-Type' => 'application/json;charset=UTF-8',
+  'X-PayU-Forward' => 'external',
+)
+Content: {"order":{"orderId":"PB68465GCH200213GUEST000P01","extOrderId":"5e45160711d81","orderCreateDate":"2020-02-13T10:25:27.526+01:00","notifyUrl":"http://alias-internal-testing.a2k.it/test-notification.php","customerIp":"127.0.0.1","merchantPosId":"300746","description":"Shopping at myStore.com","currencyCode":"PLN","totalAmount":"15000","status":"PENDING","products":[{"name":"Lenovo ThinkPad Edge E540","unitPrice":"15000","quantity":"1"}]},"properties":[{"name":"PAYMENT_ID","value":"76258454"}]}
+PaymentId: 5e45160711d81
+Status: pending
+Complete: 
+Signature: array (
+  'Host' => 'alias-internal-testing.a2k.it',
+  'Connection' => 'close',
+  'Content-Length' => '699',
+  'User-Agent' => 'Jakarta Commons-HttpClient/3.1',
+  'X-OpenPayU-Signature' => 'sender=checkout;signature=7ef9c752632032e76b0c9521fd74ccac;algorithm=MD5;content=DOCUMENT',
+  'OpenPayu-Signature' => 'sender=checkout;signature=7ef9c752632032e76b0c9521fd74ccac;algorithm=MD5;content=DOCUMENT',
+  'Content-Type' => 'application/json;charset=UTF-8',
+  'PayU-Processing-Time' => '215',
+  'X-PayU-Forward' => 'external',
+)
+Content: {"order":{"orderId":"PB68465GCH200213GUEST000P01","extOrderId":"5e45160711d81","orderCreateDate":"2020-02-13T10:25:27.526+01:00","notifyUrl":"http://alias-internal-testing.a2k.it/test-notification.php","customerIp":"127.0.0.1","merchantPosId":"300746","description":"Shopping at myStore.com","currencyCode":"PLN","totalAmount":"15000","buyer":{"customerId":"guest","email":"test@test.com","firstName":"Tester","lastName":"Tester","language":"pl"},"payMethod":{"type":"CARD_TOKEN"},"status":"COMPLETED","products":[{"name":"Lenovo ThinkPad Edge E540","unitPrice":"15000","quantity":"1"}]},"localReceiptDateTime":"2020-02-13T10:25:40.528+01:00","properties":[{"name":"PAYMENT_ID","value":"76258454"}]}
+PaymentId: 5e45160711d81
+Status: completed
+Complete: 1
+Message: stdClass::__set_state(array(
+   'order' => 
+  stdClass::__set_state(array(
+     'orderId' => 'PB68465GCH200213GUEST000P01',
+     'extOrderId' => '5e45160711d81',
+     'orderCreateDate' => '2020-02-13T10:25:27.526+01:00',
+     'notifyUrl' => 'http://alias-internal-testing.a2k.it/test-notification.php',
+     'customerIp' => '127.0.0.1',
+     'merchantPosId' => '300746',
+     'description' => 'Shopping at myStore.com',
+     'currencyCode' => 'PLN',
+     'totalAmount' => '15000',
+     'buyer' => 
+    stdClass::__set_state(array(
+       'customerId' => 'guest',
+       'email' => 'test@test.com',
+       'firstName' => 'Tester',
+       'lastName' => 'Tester',
+       'language' => 'pl',
+    )),
+     'payMethod' => 
+    stdClass::__set_state(array(
+       'type' => 'CARD_TOKEN',
+    )),
+     'status' => 'COMPLETED',
+     'products' => 
+    array (
+      0 => 
+      stdClass::__set_state(array(
+         'name' => 'Lenovo ThinkPad Edge E540',
+         'unitPrice' => '15000',
+         'quantity' => '1',
+      )),
+    ),
+  )),
+   'localReceiptDateTime' => '2020-02-13T10:25:40.528+01:00',
+   'properties' => 
+  array (
+    0 => 
+    stdClass::__set_state(array(
+       'name' => 'PAYMENT_ID',
+       'value' => '76258454',
+    )),
+  ),
+))
+Signature: array (
+  'Host' => 'alias-internal-testing.a2k.it',
+  'Connection' => 'close',
+  'Content-Length' => '457',
+  'User-Agent' => 'Jakarta Commons-HttpClient/3.1',
+  'OpenPayu-Signature' => 'sender=checkout;signature=6adb6ffe37d00fdbe15adcc1be64ad7a;algorithm=MD5;content=DOCUMENT',
+  'X-OpenPayU-Signature' => 'sender=checkout;signature=6adb6ffe37d00fdbe15adcc1be64ad7a;algorithm=MD5;content=DOCUMENT',
+  'Content-Type' => 'application/json;charset=UTF-8',
+  'PayU-Processing-Time' => '407',
+  'X-PayU-Forward' => 'external',
+)
+Content: {"order":{"orderId":"MPKP6HSNDV200212GUEST000P01","extOrderId":"5e443ad890f72","orderCreateDate":"2020-02-12T18:50:17.029+01:00","notifyUrl":"http://alias-internal-testing.a2k.it/test-notification.php","customerIp":"127.0.0.1","merchantPosId":"375848","description":"Shopping at myStore.com","currencyCode":"PLN","totalAmount":"15000","status":"CANCELED","products":[{"name":"Lenovo ThinkPad Edge E540","unitPrice":"15000","quantity":"1"}]},"properties":[]}
+error: exception 'Omnipay\Common\Exception\InvalidRequestException' with message 'Invalid signature - (sender=checkout;signature=6adb6ffe37d00fdbe15adcc1be64ad7a;algorithm=MD5;content=DOCUMENT) - 6adb6ffe37d00fdbe15adcc1be64ad7a' in /opt/local/www/alias2k/omnipay-payu/src/Messages/Notification.php:107
+Stack trace:
+#0 /opt/local/www/alias2k/omnipay-payu/src/Messages/Notification.php(83): Omnipay\PayU\Messages\Notification->getData()
+#1 /opt/local/www/alias2k/omnipay-payu/examples/test-notification.php(60): Omnipay\PayU\Messages\Notification->getTransactionReference()
+#2 {main}
+Signature: array (
+  'Host' => 'alias-internal-testing.a2k.it',
+  'Connection' => 'close',
+  'Content-Length' => '457',
+  'User-Agent' => 'Jakarta Commons-HttpClient/3.1',
+  'X-OpenPayU-Signature' => 'sender=checkout;signature=3dfd67c94cafb2420d4d6518ae43dc68;algorithm=MD5;content=DOCUMENT',
+  'OpenPayu-Signature' => 'sender=checkout;signature=3dfd67c94cafb2420d4d6518ae43dc68;algorithm=MD5;content=DOCUMENT',
+  'Content-Type' => 'application/json;charset=UTF-8',
+  'PayU-Processing-Time' => '1493',
+  'X-PayU-Forward' => 'external',
+)
+Content: {"order":{"orderId":"RHZZ5MLPVJ200213GUEST000P01","extOrderId":"5e4511b94faa0","orderCreateDate":"2020-02-13T10:07:05.770+01:00","notifyUrl":"http://alias-internal-testing.a2k.it/test-notification.php","customerIp":"127.0.0.1","merchantPosId":"375848","description":"Shopping at myStore.com","currencyCode":"PLN","totalAmount":"15000","status":"CANCELED","products":[{"name":"Lenovo ThinkPad Edge E540","unitPrice":"15000","quantity":"1"}]},"properties":[]}
+error: exception 'Omnipay\Common\Exception\InvalidRequestException' with message 'Invalid signature - (sender=checkout;signature=3dfd67c94cafb2420d4d6518ae43dc68;algorithm=MD5;content=DOCUMENT) - 3dfd67c94cafb2420d4d6518ae43dc68' in /opt/local/www/alias2k/omnipay-payu/src/Messages/Notification.php:107
+Stack trace:
+#0 /opt/local/www/alias2k/omnipay-payu/src/Messages/Notification.php(83): Omnipay\PayU\Messages\Notification->getData()
+#1 /opt/local/www/alias2k/omnipay-payu/examples/test-notification.php(60): Omnipay\PayU\Messages\Notification->getTransactionReference()
+#2 {main}
+Signature: array (
+  'Host' => 'alias-internal-testing.a2k.it',
+  'Connection' => 'close',
+  'Content-Length' => '457',
+  'X-OpenPayU-Signature' => 'sender=checkout;signature=8d9f7c50ccbaee9a66d23c59f054429a;algorithm=MD5;content=DOCUMENT',
+  'User-Agent' => 'Jakarta Commons-HttpClient/3.1',
+  'OpenPayu-Signature' => 'sender=checkout;signature=8d9f7c50ccbaee9a66d23c59f054429a;algorithm=MD5;content=DOCUMENT',
+  'Content-Type' => 'application/json;charset=UTF-8',
+  'PayU-Processing-Time' => '1804',
+  'X-PayU-Forward' => 'external',
+)
+Content: {"order":{"orderId":"LRSPT87TVB200213GUEST000P01","extOrderId":"5e4516cea7ed8","orderCreateDate":"2020-02-13T10:28:47.147+01:00","notifyUrl":"http://alias-internal-testing.a2k.it/test-notification.php","customerIp":"127.0.0.1","merchantPosId":"300746","description":"Shopping at myStore.com","currencyCode":"PLN","totalAmount":"15000","status":"CANCELED","products":[{"name":"Lenovo ThinkPad Edge E540","unitPrice":"15000","quantity":"1"}]},"properties":[]}
+error: exception 'Omnipay\Common\Exception\InvalidRequestException' with message 'We have received unknown status "CANCELED"' in /opt/local/www/alias2k/omnipay-payu/src/Messages/Notification.php:146
+Stack trace:
+#0 /opt/local/www/alias2k/omnipay-payu/examples/test-notification.php(61): Omnipay\PayU\Messages\Notification->getTransactionStatus()
+#1 {main}
+Signature: array (
+  'Host' => 'alias-internal-testing.a2k.it',
+  'Connection' => 'close',
+  'Content-Length' => '496',
+  'X-OpenPayU-Signature' => 'sender=checkout;signature=85fc6ce930b101cd3930a70011a07e38;algorithm=MD5;content=DOCUMENT',
+  'User-Agent' => 'Jakarta Commons-HttpClient/3.1',
+  'OpenPayu-Signature' => 'sender=checkout;signature=85fc6ce930b101cd3930a70011a07e38;algorithm=MD5;content=DOCUMENT',
+  'Content-Type' => 'application/json;charset=UTF-8',
+  'X-PayU-Forward' => 'external',
+)
+Content: {"order":{"orderId":"J2585ZGF82200217GUEST000P01","extOrderId":"5e4a469d8a782","orderCreateDate":"2020-02-17T08:54:06.129+01:00","notifyUrl":"http://alias-internal-testing.a2k.it/test-notification.php","customerIp":"127.0.0.1","merchantPosId":"300746","description":"Shopping at myStore.com","currencyCode":"PLN","totalAmount":"15000","status":"PENDING","products":[{"name":"Lenovo ThinkPad Edge E540","unitPrice":"15000","quantity":"1"}]},"properties":[{"name":"PAYMENT_ID","value":"76272291"}]}
+PaymentId: 5e4a469d8a782
+Status: pending
+Complete: 
+Signature: array (
+  'Host' => 'alias-internal-testing.a2k.it',
+  'Connection' => 'close',
+  'Content-Length' => '497',
+  'X-OpenPayU-Signature' => 'sender=checkout;signature=d15c0df7f3e1bc679a7928d63d9f2a57;algorithm=MD5;content=DOCUMENT',
+  'User-Agent' => 'Jakarta Commons-HttpClient/3.1',
+  'OpenPayu-Signature' => 'sender=checkout;signature=d15c0df7f3e1bc679a7928d63d9f2a57;algorithm=MD5;content=DOCUMENT',
+  'Content-Type' => 'application/json;charset=UTF-8',
+  'PayU-Processing-Time' => '399',
+  'X-PayU-Forward' => 'external',
+)
+Content: {"order":{"orderId":"J2585ZGF82200217GUEST000P01","extOrderId":"5e4a469d8a782","orderCreateDate":"2020-02-17T08:54:06.129+01:00","notifyUrl":"http://alias-internal-testing.a2k.it/test-notification.php","customerIp":"127.0.0.1","merchantPosId":"300746","description":"Shopping at myStore.com","currencyCode":"PLN","totalAmount":"15000","status":"CANCELED","products":[{"name":"Lenovo ThinkPad Edge E540","unitPrice":"15000","quantity":"1"}]},"properties":[{"name":"PAYMENT_ID","value":"76272291"}]}
+error: exception 'Omnipay\Common\Exception\InvalidRequestException' with message 'We have received unknown status "CANCELED"' in /opt/local/www/alias2k/omnipay-payu/src/Messages/Notification.php:146
+Stack trace:
+#0 /opt/local/www/alias2k/omnipay-payu/examples/test-notification.php(61): Omnipay\PayU\Messages\Notification->getTransactionStatus()
+#1 {main}

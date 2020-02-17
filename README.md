@@ -3,7 +3,7 @@
 **PayU driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements PayU Online Payment Gateway support for Omnipay.
+processing library for PHP 5.6+. This package implements PayU Online Payment Gateway support for Omnipay v3.
 
 PayU REST API 2.1 [documentation](http://developers.payu.com/en/restapi.html)
 
@@ -17,7 +17,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "bileto/omnipay-payu": "~0.1.1"
+        "alias2k/omnipay-payu": "~0.1.1"
     }
 }
 ```
@@ -44,30 +44,33 @@ try {
     $description = 'Shopping at myStore.com';
 
     $purchaseRequest = [
-        'customerIp'    => '127.0.0.1',
-        'continueUrl'   => $returnUrl,
-        'merchantPosId' => $posId,
-        'description'   => $description,
-        'currencyCode'  => 'PLN',
-        'totalAmount'   => 15000,
-        'exOrderId'     => $orderNo,
-        'buyer'         => (object)[
-            'email'     => 'test@example.com',
-            'firstName' => 'Peter',
-            'lastName'  => 'Morek',
-            'language'  => 'pl'
-        ],
-        'products'      => [
-            (object)[
-                'name'      => 'Lenovo ThinkPad Edge E540',
-                'unitPrice' => 15000,
-                'quantity'  => 1
-            ]
-        ],
-        'payMethods'    => (object) [
-            'payMethod' => (object) [
-                'type'  => 'PBL', // this is for card-only forms (no bank transfers available)
-                'value' => 'c'
+        'purchaseData' => [
+            'customerIp'    => '127.0.0.1',
+            'continueUrl'   => $returnUrl,
+            'notifyUrl'     => $notifyUrl,
+            'merchantPosId' => $posId,
+            'description'   => $description,
+            'currencyCode'  => 'PLN',
+            'totalAmount'   => 15000,
+            'extOrderId'    => $orderNo,
+            'buyer'         => (object)[
+                'email'     => 'test@test.com',
+                'firstName' => 'Tester',
+                'lastName'  => 'Tester',
+                'language'  => 'pl'
+            ],
+            'products'      => [
+                (object)[
+                    'name'      => 'Lenovo ThinkPad Edge E540',
+                    'unitPrice' => 15000,
+                    'quantity'  => 1
+                ]
+            ],
+            'payMethods'    => (object)[
+                'payMethod' => (object)[
+                    'type'  => 'PBL', // this is for card-only forms (no bank transfers available)
+                    'value' => 'c'
+                ]
             ]
         ]
     ];

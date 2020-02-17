@@ -9,16 +9,14 @@ $dotenv = new Dotenv\Dotenv(__DIR__ . '/..');
 $dotenv->load();
 
 // default is official sandbox
-$posId = isset($_ENV['POS_ID']) ? $_ENV['POS_ID'] : '300046';
-$secondKey = isset($_ENV['SECOND_KEY']) ? $_ENV['SECOND_KEY'] : '0c017495773278c50c7b35434017b2ca';
-$oAuthClientSecret = isset($_ENV['OAUTH_CLIENT_SECRET']) ? $_ENV['OAUTH_CLIENT_SECRET'] : 'c8d4b7ac61758704f38ed5564d8c0ae0';
-
+$posId = isset($_ENV['POS_ID']) ? $_ENV['POS_ID'] : '300746';
+$secondKey = isset($_ENV['SECOND_KEY']) ? $_ENV['SECOND_KEY'] : 'b6ca15b0d1020e8094d9b5f8d163db54';
+$oAuthClientSecret = isset($_ENV['OAUTH_CLIENT_SECRET']) ? $_ENV['OAUTH_CLIENT_SECRET'] : '2ee86a66e5d97e3fadc400c9f19b065d';
 $gateway = GatewayFactory::createInstance($posId, $secondKey, $oAuthClientSecret, true);
-
 try {
     $orderNo = uniqid();
-    $returnUrl = 'http://localhost:8000/gateway-return.php';
-    $notifyUrl = 'http://127.0.0.1/uuid/notify';
+    $returnUrl = "http://alias-internal-testing.a2k.it/test-finish.php?extOrderId=$orderNo";
+    $notifyUrl = 'http://alias-internal-testing.a2k.it/test-notification.php';
     $description = 'Shopping at myStore.com';
 
     $purchaseRequest = [
@@ -32,9 +30,9 @@ try {
             'totalAmount'   => 15000,
             'extOrderId'    => $orderNo,
             'buyer'         => (object)[
-                'email'     => 'jan.machala+payu@bileto.com',
-                'firstName' => 'Peter',
-                'lastName'  => 'Morek',
+                'email'     => 'test@test.com',
+                'firstName' => 'Tester',
+                'lastName'  => 'Tester',
                 'language'  => 'pl'
             ],
             'products'      => [
@@ -54,14 +52,20 @@ try {
     ];
 
     $response = $gateway->purchase($purchaseRequest);
+    //check if is a redirect call and do the redirect, in test.php is disabled
+    if (false && $response->isRedirect()) {
+      $response->redirect();
+    }
 
     echo "TransactionId: " . $response->getTransactionId() . PHP_EOL;
     echo "TransactionReference: " . $response->getTransactionReference() . PHP_EOL;
     echo 'Is Successful: ' . (bool)$response->isSuccessful() . PHP_EOL;
     echo 'Is redirect: ' . (bool)$response->isRedirect() . PHP_EOL;
 
-    // Payment init OK, redirect to the payment gateway
-    echo $response->getRedirectUrl() . PHP_EOL;
+    if ($response->isRedirect()) {
+      // Payment init OK, redirect to the payment gateway
+      echo '<a href="' . $response->getRedirectUrl() . '" target="_blank">' . $response->getRedirectUrl() . '</a>' . PHP_EOL;
+    }
 } catch (ClientErrorResponseException $e) {
     dump((string)$e);
     dump($e->getResponse()->getBody(true));

@@ -32,11 +32,13 @@ class PurchaseRequest extends AbstractRequest
         if (isset($data['purchaseData']['extOrderId'])) {
             $this->setTransactionId($data['purchaseData']['extOrderId']);
         }
-        $httpRequest = $this->httpClient->post($apiUrl, $headers, json_encode($data['purchaseData']));
-        $httpRequest->configureRedirects(true, 0);
-        $httpResponse = $httpRequest->send();
-        $responseData = $httpResponse->json();
-        $response = new PurchaseResponse($this, $responseData);
+        $httpResponse = $this->httpClient->request('POST',$apiUrl, $headers, json_encode($data['purchaseData']));
+        //$httpRequest->configureRedirects(true, 0);
+        //$httpResponse = $httpRequest->send();
+        //$responseData = $httpResponse->json();
+        $response = new PurchaseResponse($this, json_decode($httpResponse->getBody()->getContents(),true));
+
+
 
         return $this->response = $response;
     }

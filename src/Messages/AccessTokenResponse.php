@@ -23,9 +23,9 @@ class AccessTokenResponse extends AbstractResponse
      */
     public function getAccessToken()
     {
-        $completeToken = sprintf('%s %s', ucfirst($this->data['token_type']), $this->data['access_token']);
-
-        return $completeToken;
+      $data = json_decode($this->data,true);
+      $completeToken = sprintf('%s %s', ucfirst($data['token_type']), $data['access_token']);
+      return $completeToken;
     }
 
 }
